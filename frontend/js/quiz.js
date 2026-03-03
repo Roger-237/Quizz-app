@@ -146,6 +146,32 @@
     });
   };
 
+  const renderDotsWithResults = (reponsesCorrectes) => {
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+
+    questions.forEach((q, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'pill-dot';
+
+      const userAnswerId = selectedAnswers.get(q.id);
+      const correctAnswerId = reponsesCorrectes[index];
+
+      if (userAnswerId === correctAnswerId) {
+        dot.classList.add('pill-dot--correct');
+      } else if (userAnswerId) {
+        dot.classList.add('pill-dot--incorrect');
+      } else {
+        dot.classList.add('pill-dot--answered');
+      }
+
+      dot.textContent = String(index + 1);
+      dot.title = `Question ${index + 1} - ${userAnswerId === correctAnswerId ? 'Correct' : userAnswerId ? 'Incorrect' : 'Non répondue'}`;
+      dotsContainer.appendChild(dot);
+    });
+  };
+
   const renderQuestion = () => {
     if (!questions.length || !choicesEl || !enonceEl) return;
     const question = questions[currentIndex];
@@ -271,8 +297,12 @@
       const score = resultats.score ?? 0;
       const points = resultats.points ?? 0;
       const total = resultats.totalQuestions ?? questions.length;
+      const reponsesCorrectes = resultats.reponsesCorrectes || [];
 
       if (sidebarScore) sidebarScore.textContent = String(score);
+
+      // Afficher les résultats avec les couleurs vert/rouge
+      showQuizResults(reponsesCorrectes);
 
       if (quizResult) {
         quizResult.hidden = false;
@@ -306,6 +336,65 @@
       console.error(error);
       setStatus("Erreur réseau lors de l'enregistrement du score.", 'error');
     }
+  };
+
+  const showQuizResults = (reponsesCorrectes) => {
+    // Mettre à jour les points de progression avec les couleurs
+    renderDotsWithResults(reponsesCorrectes);
+    
+    // Afficher toutes les questions avec les réponses correctes/incorrectes
+    questions.forEach((question, index) => {
+      const userAnswerId = selectedAnswers.get(question.id);
+      const correctAnswerId = reponsesCorrectes[index];
+      
+      // Recréer les choix pour cette question
+      const choicesContainer = document.createElement('div');
+      choicesContainer.className = 'choices-list';
+      choicesContainer.style.marginBottom = 'var(--space-lg)';
+      
+      (question.choix || []).forEach((choix) => {
+        const choice = document.createElement('button');
+        choice.type = 'button';
+        choice.className = 'choice';
+        
+        const circle = document.createElement('span');
+        circle.className = 'choice-input';
+        
+        const label = document.createElement('span');
+        label.className = 'choice-label';
+        label.textContent = choix.libelle;
+        
+        choice.appendChild(circle);
+        choice.appendChild(label);
+        
+        // Appliquer les couleurs en fonction de la réponse
+        if (choix.id === correctAnswerId) {
+          choice.classList.add('correct');
+        } else if (choix.id === userAnswerId && choix.id !== correctAnswerId) {
+          choice.classList.add('incorrect');
+        }
+        
+        // Désactiver les clics
+        choice.style.cursor = 'default';
+        choice.style.pointerEvents = 'none';
+        
+        choicesContainer.appendChild(choice);
+      });
+      
+      // Ajouter un titre pour la question
+      const questionTitle = document.createElement('h3');
+      questionTitle.style.marginBottom = 'var(--space-md)';
+      questionTitle.style.color = 'var(--color-text)';
+      questionTitle.style.fontSize = 'var(--font-size-lg)';
+      questionTitle.style.fontWeight = '600';
+      questionTitle.textContent = `Question ${index + 1}: ${question.enonce}`;
+      
+      // Ajouter au conteneur de résultats
+      if (quizResult) {
+        quizResult.appendChild(questionTitle);
+        quizResult.appendChild(choicesContainer);
+      }
+    });
   };
 
   const handleNextQuestion = () => {

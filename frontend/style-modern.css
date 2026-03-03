@@ -848,7 +848,212 @@ ul, ol {
 }
 
 /* ============================================================
-   13. RESPONSIVE DESIGN
+   13. QUIZ COMPONENTS
+   ============================================================ */
+
+/* Choices List */
+.choices-list {
+  display: grid;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+/* Choice Button */
+.choice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+  width: 100%;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  position: relative;
+  overflow: hidden;
+}
+
+.choice:hover {
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 170, 0.15);
+}
+
+/* Selected State */
+.choice.selected {
+  background-color: var(--color-primary-faded);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.2);
+}
+
+.choice.selected .choice-input {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.choice.selected .choice-input::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-bg);
+  font-weight: bold;
+  font-size: var(--font-size-sm);
+}
+
+/* Choice Input (Radio Button) */
+.choice-input {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  transition: all var(--transition-fast);
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Choice Label */
+.choice-label {
+  flex: 1;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Correct Answer State */
+.choice.correct {
+  background-color: rgba(0, 212, 170, 0.15);
+  border-color: var(--color-success);
+  position: relative;
+}
+
+.choice.correct::after {
+  content: '✓';
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-success);
+  color: var(--color-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: var(--font-size-sm);
+  animation: correctPulse 0.6s ease-out;
+}
+
+/* Incorrect Answer State */
+.choice.incorrect {
+  background-color: rgba(255, 92, 108, 0.15);
+  border-color: var(--color-danger);
+  position: relative;
+}
+
+.choice.incorrect::after {
+  content: '✗';
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-danger);
+  color: var(--color-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: var(--font-size-sm);
+  animation: incorrectShake 0.6s ease-out;
+}
+
+/* Animations */
+@keyframes correctPulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes incorrectShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* Progress Dots */
+.pill-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pill-dot:hover {
+  border-color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.pill-dot--active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-bg);
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.3);
+}
+
+.pill-dot--answered {
+  background-color: var(--color-primary-faded);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.pill-dot--correct {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+  color: var(--color-bg);
+}
+
+.pill-dot--incorrect {
+  background-color: var(--color-danger);
+  border-color: var(--color-danger);
+  color: var(--color-bg);
+}
+
+/* ============================================================
+   14. RESPONSIVE DESIGN
    ============================================================ */
 @media (max-width: 768px) {
   .container {

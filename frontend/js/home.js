@@ -5,6 +5,7 @@
   const authEls = document.querySelectorAll('[data-auth-visible="auth"]');
   const logoutBtn = document.getElementById('logoutHome');
   const navUsername = document.getElementById('nav-username-home');
+  const startQuizBtn = document.querySelector('.hero__actions .btn--primary');
 
   const showGuest = !token;
 
@@ -55,6 +56,19 @@
       }
       window.localStorage.removeItem('token');
       window.location.reload();
+    });
+  }
+
+  // Logique simple pour le bouton "Commencer le Quiz"
+  if (startQuizBtn) {
+    startQuizBtn.addEventListener('click', (e) => {
+      if (showGuest) {
+        // Non connecté : rediriger vers le formulaire de login
+        e.preventDefault();
+        window.location.href = '#login';
+      } else {
+        // Connecté : laisser la redirection normale vers quiz.html
+      }
     });
   }
 })();
