@@ -279,9 +279,11 @@ class ProfessionalDashboardManager {
         <div class="dashboard-container"> 
           <div class="empty-state">
             <div class="empty-icon">🔒</div>
-            <div class="empty-title">Accès Restreint</div>
+            <div class="empty-title" style="background: linear-gradient(135deg, #f87171 0%, #ef4444 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              Accès Restreint
+            </div>
             <div class="empty-description">Veuillez vous connecter pour accéder à votre tableau de bord</div>
-            <button class="btn btn-primary" style="margin-top: 1rem;" onclick="window.location.href='index.html'">
+            <button class="btn btn-primary" style="background: linear-gradient(135deg, black 0%, black 100%); color: white; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem; border: none; cursor: pointer; transition: background 0.3s ease;" onclick="window.location.href='index.html'">
               Retour à l'accueil
             </button>
           </div>
