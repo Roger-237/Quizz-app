@@ -23,12 +23,19 @@
           </div>
         </div>
         <nav class="nav-links" aria-label="Navigation principale">
-          <a href="dashboard.html" class="nav-link">Tableau de bord</a>
+          <a href="dashboard.html" class="nav-link nav-link--primary">Tableau de bord</a>
           <a href="quiz.html" class="nav-link">Jouer</a>
           <a href="classement.html" class="nav-link">Classement</a>
-          <button id="logoutBtn" class="nav-link nav-link--primary" type="button">
-            Déconnexion
-          </button>
+           <!-- Liens visibles seulement si NON connecté -->
+        <a href="login.html" class="lien-navigation" data-auth-visible="guest">Connexion</a>
+        <a href="inscription.html" class="lien-navigation" data-auth-visible="guest">Inscription</a>
+
+        <!-- Actions visibles seulement si connecté -->
+        <a href="dashboard.html" class="lien-navigation" data-auth-visible="auth" style="display: none">Tableau de
+          bord</a>
+        <button id="logoutBtn" class="nav-link" type="button" data-auth-visible="auth" style="display: none">
+          Déconnexion
+        </button>
         </nav>
       </div>
     </header>
@@ -144,6 +151,7 @@
 
     <script src="js/config.js"></script>
     <script src="js/auth-service.js"></script>
+    <script src="js/forms.js"></script>
     <script src="js/dashboard.js"></script>
   </body>
 </html>

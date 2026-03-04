@@ -279,6 +279,29 @@ ul, ol {
   border-radius: var(--radius-sm);
   transition: all var(--transition-fast);
 }
+#logoutBtn {
+  color: var(--color-text-secondary);
+  border: none;
+  background-color: transparent;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+#logoutBtn:hover {
+  background-color:  #00f0c02e;
+  color: var(--color-danger);
+}
+
+#logoutHome:hover {
+  color: red;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
 
 .lien-navigation:hover,
 .lien-navigation--primaire {

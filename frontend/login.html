@@ -26,7 +26,14 @@
           <a href="index.html" class="lien-navigation">Accueil</a>
           <a href="quiz.html" class="lien-navigation">Jouer</a>
           <a href="classement.html" class="lien-navigation">Classement</a>
-          <a href="inscription.html" class="lien-navigation lien-navigation--primaire">Inscription</a>
+          <!-- Liens visibles seulement si NON connecté -->
+          <a href="login.html" class="nav-link" data-auth-visible="guest">Connexion</a>
+          <a href="inscription.html" class="nav-link nav-link--primary" data-auth-visible="guest">Inscription</a>
+          
+          <!-- Actions visibles seulement si connecté -->
+          <a href="dashboard.html" class="lien-navigation" data-auth-visible="auth" style="display: none">Tableau de bord</a>
+          <button id="logoutHome" class="lien-navigation lien-navigation--primaire" type="button" data-auth-visible="auth" style="display: none">Déconnexion</button>
+
         </nav>
       </div>
     </header>

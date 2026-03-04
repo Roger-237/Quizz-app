@@ -57,7 +57,7 @@ class FormManager {
     }
 
     // Boutons de déconnexion
-    document.querySelectorAll('#logoutHome, #logout').forEach(btn => {
+    document.querySelectorAll('#logoutBtn, #logoutBtn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         this.handleLogout();

@@ -297,6 +297,21 @@ ul, ol {
   background-color: var(--color-primary-hover);
   color: var(--color-bg);
 }
+#logoutBtn {
+  color: var(--color-text-secondary);
+  border: none;
+  background-color: transparent;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+#logoutBtn:hover {
+  background-color:  #00f0c02e;
+  color: var(--color-danger);
+}
+
 
 /* Menu hamburger pour mobile */
 .bascule-navigation {

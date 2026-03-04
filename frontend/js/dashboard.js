@@ -276,7 +276,7 @@ class ProfessionalDashboardManager {
     const container = document.querySelector('.page-main') || document.querySelector('main');
     if (container) {
       container.innerHTML = `
-        <div class="dashboard-container">
+        <div class="dashboard-container"> 
           <div class="empty-state">
             <div class="empty-icon">🔒</div>
             <div class="empty-title">Accès Restreint</div>
