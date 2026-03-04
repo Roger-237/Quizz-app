@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Classement — QuizMaster</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/classement.css" />
+  </head>
+  <body class="page">
+    <header class="top-nav">
+      <div class="top-nav-inner">
+        <div class="brand">
+          <div class="brand-logo">Q</div>
+          <div>
+            <div class="brand-text">QuizMaster</div>
+            <p class="nav-username" id="nav-username-leaderboard"></p>
+          </div>
+        </div>
+        <nav class="nav-links" aria-label="Navigation principale">
+          <a href="dashboard.html" class="nav-link">Tableau de bord</a>
+          <a href="quiz.html" class="nav-link">Jouer</a>
+          <a href="classement.html" class="nav-link nav-link--primary">Classement</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <section class="hero fade-in">
+        <span class="hero__badge">🏆 Top 10 Mondial</span>
+        <h1 class="hero__title">Classement général</h1>
+        <p class="hero__subtitle">
+          Découvre le Top 10 mondial des joueurs et vois où tu te situes.
+        </p>
+      </section>
+
+      <section class="card" style="margin-top: var(--space-2xl);" aria-labelledby="leaderboard-title">
+        <div class="card__header">
+          <h2 id="leaderboard-title" class="card__title">Top 10 des joueurs</h2>
+          <p class="card__subtitle">
+            Les points totaux sont recalculés automatiquement après chaque partie jouée.
+          </p>
+        </div>
+
+        <div id="leaderboard-empty" class="text-center" style="padding: var(--space-xl); color: var(--color-text-secondary);" hidden>
+          Aucun joueur dans le classement pour le moment.
+        </div>
+
+        <div id="leaderboard-table-shell" hidden>
+          <table style="width: 100%; border-collapse: collapse;" aria-describedby="leaderboard-title">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <th style="text-align: left; padding: var(--space-sm); font-weight: 600; color: var(--color-text-secondary);">Rang</th>
+                <th style="text-align: left; padding: var(--space-sm); font-weight: 600; color: var(--color-text-secondary);">Joueur</th>
+                <th style="text-align: left; padding: var(--space-sm); font-weight: 600; color: var(--color-text-secondary);">Points</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <p id="leaderboard-status" class="status-message" style="margin-top: var(--space-lg);" aria-live="polite"></p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-contenu">
+        <div class="footer-section">
+          <div class="footer-marque">
+            <div class="logo-marque">Q</div>
+            <div class="texte-marque">QuizMaster</div>
+          </div>
+          <p class="footer-description">Testez vos connaissances et défiez-vous contre d'autres joueurs du monde entier.</p>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-titre">Navigation</h4>
+          <ul class="footer-liens">
+            <li><a href="index.html" class="footer-lien">Accueil</a></li>
+            <li><a href="quiz.html" class="footer-lien">Jouer</a></li>
+            <li><a href="classement.html" class="footer-lien">Classement</a></li>
+            <li><a href="inscription.html" class="footer-lien">S'inscrire</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-titre">Ressources</h4>
+          <ul class="footer-liens">
+            <li><a href="login.html" class="footer-lien">Connexion</a></li>
+            <li><a href="forgot-password.html" class="footer-lien">Mot de passe oublié</a></li>
+            <li><a href="verification-email.html" class="footer-lien">Vérification email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bas">
+        <p>&copy; 2026 QuizMaster. Tous droits réservés.</p>
+      </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth-service.js"></script>
+    <script src="js/classement.js"></script>
+  </body>
+</html>
+

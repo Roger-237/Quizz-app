@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Utilisateur {
+  id                        Int       @id @default(autoincrement())
+  nomUtilisateur            String    @map("nom_utilisateur") @unique
+  email                     String    @unique
+  motDePasseHash            String    @map("mot_de_passe_hash")
+  pointsTotaux              Int       @default(0) @map("points_totaux")
+  dateInscription           DateTime  @default(now()) @map("date_inscription")
+  lastLogin                 DateTime? @map("last_login")
+  isVerified                Boolean   @default(false) @map("is_verified")
+  verificationToken         String?   @map("verification_token")
+  verificationTokenExpiresAt DateTime? @map("verification_token_expires_at")
+  resetPasswordToken        String?   @map("reset_password_token")
+  resetPasswordTokenExpiresAt DateTime? @map("reset_password_token_expires_at")
+  parties                   Partie[]
+
+  @@map("utilisateurs")
+}
+
+model Question {
+  id           Int       @id @default(autoincrement())
+  enonce       String
+  categorie    String
+  difficulte   Int
+  pointsValeur Int       @map("points_valeur")
+  reponses     Reponse[]
+
+  @@map("questions")
+}
+
+model Reponse {
+  id          Int      @id @default(autoincrement())
+  libelle     String
+  estCorrecte Boolean  @default(false) @map("est_correcte")
+  questionId  Int      @map("question_id")
+  question    Question @relation(fields: [questionId], references: [id])
+
+  @@map("reponses")
+}
+
+model Partie {
+  id               Int          @id @default(autoincrement())
+  scoreObtenu      Int          @map("score_obtenu")
+  totalQuestions   Int          @map("total_questions")
+  pointsGagnes     Int          @map("points_gagnes")
+  categorieJouee   String       @map("categorie_jouee")
+  niveauDifficulte Int          @map("niveau_difficulte")
+  joueLe           DateTime     @default(now()) @map("joue_le")
+  utilisateurId    Int          @map("utilisateur_id")
+  utilisateur      Utilisateur  @relation(fields: [utilisateurId], references: [id])
+
+  @@map("parties")
+}
+

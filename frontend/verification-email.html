@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vérification Email - QuizMaster</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/verification-email.css" />
+  </head>
+  <body class="page">
+    <!-- Navigation principale -->
+    <header class="navigation-test">
+      <div class="navigation-test-interieur">
+        <div class="marque">
+          <div class="logo-marque">Q</div>
+          <div>
+            <div class="texte-marque">QuizMaster</div>
+          </div>
+        </div>
+        <nav class="liens-navigation" aria-label="Navigation principale">
+          <a href="index.html" class="lien-navigation">Accueil</a>
+          <a href="quiz.html" class="lien-navigation">Jouer</a>
+          <a href="classement.html" class="lien-navigation">Classement</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <section class="conteneur conteneur--etroit">
+        <div class="carte">
+          <div class="carte-en-tete">
+            <h1 class="carte-titre">Vérifiez votre email</h1>
+            <p class="carte-sous-titre">
+              Un code de vérification à 6 chiffres a été envoyé à votre adresse email.
+              Entrez ce code ci-dessous pour activer votre compte.
+            </p>
+            <p class="carte-sous-titre" style="font-size: 0.9rem; color: var(--color-text-secondary);">
+              <strong>Important :</strong> Vous devez vérifier votre email avant de pouvoir vous connecter et jouer aux quiz.
+            </p>
+          </div>
+
+          <div id="verification-alert" class="alert" role="alert" aria-live="polite"></div>
+
+          <form id="verification-form" novalidate>
+            <div class="groupe-formulaire">
+              <label for="code" class="etiquette-formulaire">Code de vérification</label>
+              <input
+                id="code"
+                name="code"
+                type="text"
+                class="champ-formulaire"
+                placeholder="123456"
+                maxlength="6"
+                pattern="[0-9]{6}"
+                required
+              />
+              <p id="code-error" class="erreur-formulaire" role="alert"></p>
+            </div>
+
+            <button type="submit" class="bouton bouton--primaire bouton--largeur-complete">
+              Vérifier mon email
+            </button>
+
+            <div class="pied-authentification">
+              <p><a href="login.html" class="texte-primaire">Retour à la connexion</a></p>
+              <p><a href="inscription.html" class="texte-primaire">Créer un nouveau compte</a></p>
+              <p><a href="forgot-password.html" class="texte-primaire">Mot de passe oublié ?</a></p>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-contenu">
+        <div class="footer-section">
+          <div class="footer-marque">
+            <div class="logo-marque">Q</div>
+            <div class="texte-marque">QuizMaster</div>
+          </div>
+          <p class="footer-description">Testez vos connaissances et défiez-vous contre d'autres joueurs du monde entier.</p>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-titre">Navigation</h4>
+          <ul class="footer-liens">
+            <li><a href="index.html" class="footer-lien">Accueil</a></li>
+            <li><a href="quiz.html" class="footer-lien">Jouer</a></li>
+            <li><a href="classement.html" class="footer-lien">Classement</a></li>
+            <li><a href="inscription.html" class="footer-lien">S'inscrire</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-titre">Ressources</h4>
+          <ul class="footer-liens">
+            <li><a href="login.html" class="footer-lien">Connexion</a></li>
+            <li><a href="forgot-password.html" class="footer-lien">Mot de passe oublié</a></li>
+            <li><a href="verification-email.html" class="footer-lien">Vérification email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bas">
+        <p>&copy; 2026 QuizMaster. Tous droits réservés.</p>
+      </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth-service.js"></script>
+    <script src="js/forms.js"></script>
+  </body>
+</html>

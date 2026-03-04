@@ -1,16 +1,9 @@
-import { drizzle } from 'drizzle-orm/node-postgres';
-import { Pool } from 'pg';
-import * as schema from './schema';
-import dotenv from 'dotenv';
+import 'dotenv/config'
+import { PrismaClient } from '../generated/prisma/client'
+import { PrismaNeon } from '@prisma/adapter-neon'
 
-dotenv.config();
+const adapter = new PrismaNeon({
+  connectionString: process.env.DATABASE_URL!,
+})
 
-// On extrait manuellement les composants si DATABASE_URL pose problème au driver pg
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false // Requis pour Neon avec le driver 'pg'
-  }
-});
-
-export const db = drizzle(pool, { schema });
+export const prisma = new PrismaClient({ adapter })

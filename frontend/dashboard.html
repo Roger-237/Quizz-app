@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tableau de bord — QuizMaster</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body class="page">
+    <header class="top-nav">
+      <div class="top-nav-inner">
+        <div class="brand">
+          <div class="brand-logo">Q</div>
+          <div>
+            <div class="brand-text">QuizMaster</div>
+            <p class="nav-username" id="nav-username"></p>
+          </div>
+        </div>
+        <nav class="nav-links" aria-label="Navigation principale">
+          <a href="dashboard.html" class="nav-link">Tableau de bord</a>
+          <a href="quiz.html" class="nav-link">Jouer</a>
+          <a href="classement.html" class="nav-link">Classement</a>
+          <button id="logoutBtn" class="nav-link nav-link--primary" type="button">
+            Déconnexion
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <section class="hero fade-in">
+        <h1 class="hero__title">Bonjour, <span id="hero-name">Joueur·se</span> 👋</h1>
+        <p class="hero__subtitle">
+          Suis ta progression, rejoue tes catégories favorites et vise le sommet du classement.
+        </p>
+      </section>
+
+      <section aria-labelledby="stats-title">
+        <div class="features">
+          <article class="feature-card slide-up" style="animation-delay: 100ms;">
+            <div class="feature-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <h2 id="stats-title" class="feature-card__title">Points accumulés</h2>
+            <p id="points-accumules" class="feature-card__desc" style="font-size: var(--font-size-2xl); font-weight: 700; color: var(--color-primary);">—</p>
+            <p class="feature-card__desc">Somme de tous tes points gagnés.</p>
+          </article>
+
+          <article class="feature-card slide-up" style="animation-delay: 200ms;">
+            <div class="feature-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <h2 class="feature-card__title">Taux de réussite</h2>
+            <p id="taux-reussite" class="feature-card__desc" style="font-size: var(--font-size-2xl); font-weight: 700; color: var(--color-success);">—</p>
+            <p class="feature-card__desc">Pourcentage de bonnes réponses sur l'ensemble de tes parties.</p>
+          </article>
+
+          <article class="feature-card slide-up" style="animation-delay: 300ms;">
+            <div class="feature-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+            <h2 class="feature-card__title">Catégorie favorite</h2>
+            <p id="categorie-favorite" class="feature-card__desc" style="font-size: var(--font-size-xl); font-weight: 600; color: var(--color-warning);">—</p>
+            <p class="feature-card__desc">L'univers où tu joues le plus souvent.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top: var(--space-2xl);" aria-labelledby="history-title">
+        <div class="card__header">
+          <h2 id="history-title" class="card__title">Historique de tes parties</h2>
+          <p class="card__subtitle">
+            Consulte les dernières sessions jouées pour suivre ta progression.
+          </p>
+        </div>
+        
+        <div id="history-empty" class="text-center" style="padding: var(--space-xl); color: var(--color-text-secondary);" hidden>
+          Aucune partie jouée pour le moment. Lance un
+          <a href="quiz.html" class="text-primary">nouveau quiz</a> pour commencer.
+        </div>
+        
+        <div id="history-table-shell" hidden>
+          <table style="width: 100%; border-collapse: collapse;" aria-describedby="history-title">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <th style="text-align: left; padding: var(--space-sm); font-weight: 600; color: var(--color-text-secondary);">Date</th>
+                <th style="text-align: left; padding: var(--space-sm); font-weight: 600; color: var(--color-text-secondary);">Catégorie</th>
+                <th style="text-align: left; padding: var(--space-sm); font-weight: 600; color: var(--color-text-secondary);">Score</th>
+                <th style="text-align: left; padding: var(--space-sm); font-weight: 600; color: var(--color-text-secondary);">Points gagnés</th>
+              </tr>
+            </thead>
+            <tbody id="history-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <p id="dashboard-status" class="status-message" style="margin-top: var(--space-lg);" aria-live="polite"></p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-contenu">
+        <div class="footer-section">
+          <div class="footer-marque">
+            <div class="logo-marque">Q</div>
+            <div class="texte-marque">QuizMaster</div>
+          </div>
+          <p class="footer-description">Testez vos connaissances et défiez-vous contre d'autres joueurs du monde entier.</p>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-titre">Navigation</h4>
+          <ul class="footer-liens">
+            <li><a href="index.html" class="footer-lien">Accueil</a></li>
+            <li><a href="quiz.html" class="footer-lien">Jouer</a></li>
+            <li><a href="classement.html" class="footer-lien">Classement</a></li>
+            <li><a href="inscription.html" class="footer-lien">S'inscrire</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-titre">Ressources</h4>
+          <ul class="footer-liens">
+            <li><a href="login.html" class="footer-lien">Connexion</a></li>
+            <li><a href="forgot-password.html" class="footer-lien">Mot de passe oublié</a></li>
+            <li><a href="verification-email.html" class="footer-lien">Vérification email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bas">
+        <p>&copy; 2026 QuizMaster. Tous droits réservés.</p>
+      </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth-service.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>
+
