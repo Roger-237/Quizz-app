@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion — QuizMaster</title>
+     <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style-modern.css" />
+</head>
+<body class="page"   > 
+    <header class="top-nav">
+      <div class="top-nav-inner">
+        <div class="brand">
+          <div class="brand-logo">Q</div>
+          <div>
+            <div class="brand-text">QuizMaster</div>
+          </div>
+        </div>
+        <nav class="nav-links" aria-label="Navigation principale">
+          <a href="index.html" class="nav-link">Accueil</a>
+          <a href="quiz.html" class="nav-link">Jouer</a>
+          <a href="classement.html" class="nav-link">Classement</a>
+        </nav>
+      </div>
+    </header>
+
+<section id="login" class="auth-card card" data-auth-visible="guest" style="display: none; justify-content: center; align-items: center; min-height: 80vh; margin: 2rem auto; max-width: 400px;">
+        <div class="card__header">
+          <h2 class="card__title">Rejoins ta session</h2>
+          <p class="card__subtitle">
+            Entre ton email et ton mot de passe pour accéder à ton tableau de bord et à tes stats.
+          </p>
+        </div>
+
+        <div id="login-alert" class="alert" role="alert" aria-live="polite"></div>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              class="form-input"
+              placeholder="tu@exemple.com"
+              autocomplete="email"
+              required
+            />
+            <p id="login-email-error" class="form-error" role="alert"></p>
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label" >Mot de passe</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              class="form-input"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+              minlength="6"
+            />
+            <p id="login-password-error" class="form-error" role="alert"></p>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--block">
+            Se connecter
+          </button>
+
+          <div class="auth-footer">
+            <p>Pas encore de compte ? <a href="inscription.html" class="text-primary">Créer un compte</a></p>
+          </div>
+
+          <p id="login-status" class="status-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/index.js" defer></script>
+
+</body>
+</html>

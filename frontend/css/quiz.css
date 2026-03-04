@@ -342,6 +342,11 @@ ul, ol {
   padding: var(--space-xl);
   box-shadow: var(--shadow-sm);
   transition: box-shadow var(--transition-base);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: visible !important;
+  max-height: none !important;
+  height: auto !important;
 }
 
 .carte:hover {
@@ -1318,6 +1323,96 @@ ul, ol {
     max-width: 300px;
   }
 }
+/* ============================================================
+   STYLES POUR LE QUIZ - RÉPONSES AMÉLIORÉS
+   ============================================================ */
+#choices {
+  display: grid !important;
+  gap: var(--space-md) !important;
+  margin-bottom: var(--space-xl) !important;
+  width: 100%;
+  min-height: auto !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+.choix-liste {
+  display: grid !important;
+  gap: var(--space-md) !important;
+  margin-bottom: var(--space-xl) !important;
+  width: 100%;
+  min-height: auto !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+.choix-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: var(--space-md) !important;
+  background-color: var(--color-surface) !important;
+  border: 2px solid var(--color-border) !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 50px;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.choix-item:hover {
+  background-color: var(--color-surface-hover) !important;
+  border-color: var(--color-primary) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 170, 0.2) !important;
+}
+
+.choix-item input[type="radio"] {
+  margin-right: var(--space-md) !important;
+  cursor: pointer !important;
+  width: 20px !important;
+  height: 20px !important;
+  accent-color: var(--color-primary) !important;
+  flex-shrink: 0;
+}
+
+.choix-item label {
+  flex: 1 !important;
+  cursor: pointer !important;
+  font-size: var(--font-size-base) !important;
+  color: var(--color-text) !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  line-height: 1.5;
+}
+
+.choix-item input[type="radio"]:checked + label {
+  color: var(--color-primary) !important;
+  font-weight: 700 !important;
+}
+
+.choix-item.selected {
+  background-color: var(--color-surface-hover) !important;
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 2px var(--color-primary-faded) !important;
+}
+
+.choix-item.correct {
+  border-color: var(--color-success) !important;
+  background-color: rgba(0, 212, 170, 0.1) !important;
+}
+
+.choix-item.incorrect {
+  border-color: var(--color-danger) !important;
+  background-color: rgba(255, 92, 108, 0.1) !important;
+}
+
+/* Centrage de texte */
+.texte-centre {
+  text-align: center;
+}
 
 @media (max-width: 480px) {
   .card {
@@ -1338,5 +1433,115 @@ ul, ol {
 
   .hero__subtitle {
     font-size: var(--font-size-sm);
+  }
+}
+
+/* ============================================================
+   FOOTER STYLES
+   ============================================================ */
+.footer {
+  margin-top: auto;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.footer-contenu {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.footer-marque {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.footer-marque .logo-marque {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-primary), #00b899);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  color: var(--color-bg);
+}
+
+.footer-marque .texte-marque {
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+}
+
+.footer-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.footer-titre {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.footer-liens {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer-lien {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-lien:hover {
+  color: var(--color-primary);
+}
+
+.footer-bas {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .footer-contenu {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .footer-bas {
+    padding-top: var(--space-lg);
   }
 }

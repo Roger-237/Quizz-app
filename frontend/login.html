@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Vérification Email - QuizMaster</title>
+    <title>Connexion — QuizMaster</title>
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="css/verification-email.css" />
+    <link rel="stylesheet" href="css/index.css" />
   </head>
   <body class="page">
     <!-- Navigation principale -->
@@ -26,53 +26,65 @@
           <a href="index.html" class="lien-navigation">Accueil</a>
           <a href="quiz.html" class="lien-navigation">Jouer</a>
           <a href="classement.html" class="lien-navigation">Classement</a>
+          <a href="inscription.html" class="lien-navigation lien-navigation--primaire">Inscription</a>
         </nav>
       </div>
     </header>
 
     <main class="page-main">
-      <section class="conteneur conteneur--etroit">
-        <div class="carte">
-          <div class="carte-en-tete">
-            <h1 class="carte-titre">Vérifiez votre email</h1>
-            <p class="carte-sous-titre">
-              Un code de vérification à 6 chiffres a été envoyé à votre adresse email.
-              Entrez ce code ci-dessous pour activer votre compte.
-            </p>
-            <p class="carte-sous-titre" style="font-size: 0.9rem; color: var(--color-text-secondary);">
-              <strong>Important :</strong> Vous devez vérifier votre email avant de pouvoir vous connecter et jouer aux quiz.
-            </p>
+      <!-- Bloc de connexion -->
+      <section class="carte-authentification carte">
+        <div class="carte-en-tete">
+          <h1 class="carte-titre">Rejoins ta session</h1>
+          <p class="carte-sous-titre">
+            Entre ton email et ton mot de passe pour accéder à ton tableau de bord et à tes stats.
+          </p>
+        </div>
+
+        <div id="login-alert" class="alert" role="alert" aria-live="polite"></div>
+
+        <form id="login-form" novalidate>
+          <div class="groupe-formulaire">
+            <label for="email" class="etiquette-formulaire">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              class="champ-formulaire"
+              placeholder="tu@exemple.com"
+              autocomplete="email"
+              required
+            />
+            <p id="login-email-error" class="erreur-formulaire" role="alert"></p>
           </div>
 
-          <div id="verification-alert" class="alert" role="alert" aria-live="polite"></div>
+          <div class="groupe-formulaire">
+            <label for="password" class="etiquette-formulaire">Mot de passe</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              class="champ-formulaire"
+              placeholder="•••••••"
+              autocomplete="current-password"
+              required
+              minlength="6"
+            />
+            <p id="login-password-error" class="erreur-formulaire" role="alert"></p>
+          </div>
 
-          <form id="verification-form" novalidate>
-            <div class="groupe-formulaire">
-              <label for="code" class="etiquette-formulaire">Code de vérification</label>
-              <input
-                id="code"
-                name="code"
-                type="text"
-                class="champ-formulaire"
-                placeholder="123456"
-                maxlength="6"
-                pattern="[0-9]{6}"
-                required
-              />
-              <p id="code-error" class="erreur-formulaire" role="alert"></p>
-            </div>
+          <button type="submit" class="bouton bouton--primaire bouton--largeur-complete">
+            Se connecter
+          </button>
 
-            <button type="submit" class="bouton bouton--primaire bouton--largeur-complete">
-              Vérifier mon email
-            </button>
+          <div class="pied-authentification">
+            <p>Pas encore de compte ? <a href="inscription.html" class="texte-primaire">Créer un compte</a></p>
+            <p><a href="forgot-password.html" class="texte-primaire">Mot de passe oublié ?</a></p>
+            <p><a href="verification-email.html" class="texte-primaire">Vous n'avez pas reçu le code de vérification ?</a></p>
+          </div>
 
-            <div class="pied-authentification">
-              <p><a href="login.html" class="texte-primaire">Retour à la connexion</a></p>
-              <p><a href="inscription.html" class="texte-primaire">Créer un nouveau compte</a></p>
-              <p><a href="forgot-password.html" class="texte-primaire">Mot de passe oublié ?</a></p>
-            </div>
-          </form>
-        </div>
+          <p id="login-status" class="message-statut" role="status" aria-live="polite"></p>
+        </form>
       </section>
     </main>
 
@@ -98,7 +110,6 @@
         <div class="footer-section">
           <h4 class="footer-titre">Ressources</h4>
           <ul class="footer-liens">
-            <li><a href="login.html" class="footer-lien">Connexion</a></li>
             <li><a href="forgot-password.html" class="footer-lien">Mot de passe oublié</a></li>
             <li><a href="verification-email.html" class="footer-lien">Vérification email</a></li>
           </ul>

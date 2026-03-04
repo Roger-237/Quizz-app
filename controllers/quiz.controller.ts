@@ -25,7 +25,7 @@ export const obtenirQuiz = async (req: Request, res: Response) => {
     // 2. Pour chaque question, on récupère ses réponses
     // CRUCIAL : On ne renvoie PAS le champ 'estCorrecte' au client pour éviter la triche !
     const quizComplet = await Promise.all(
-      questionsSelectionnees.map(async (q: { id: number; enonce: string; pointsValeur: number }) => {
+      questionsSelectionnees.map(async (q: any) => {
         const choix = await prisma.reponse.findMany({
           where: { questionId: q.id },
           select: {
@@ -38,6 +38,8 @@ export const obtenirQuiz = async (req: Request, res: Response) => {
           id: q.id,
           enonce: q.enonce,
           points: q.pointsValeur,
+          categorie: q.categorie,
+          difficulte: q.difficulte,
           choix,
         };
       })

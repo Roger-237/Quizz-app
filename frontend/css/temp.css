@@ -120,9 +120,7 @@ ul, ol {
   list-style: none;
 }
 
-/* ============================================================
-   3. UTILITY CLASSES
-   ============================================================ */
+
 .container {
   width: 100%;
   max-width: var(--max-width);
@@ -1139,3 +1137,4 @@ ul, ol {
     font-size: var(--font-size-sm);
   }
 }
+
