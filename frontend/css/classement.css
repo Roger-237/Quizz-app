@@ -17,9 +17,7 @@
    - Bordure:        #1e2240  (bordures subtiles)
    ============================================================ */
 
-/* ============================================================
-   1. PROPRIÉTÉS CSS PERSONNALISÉES (Variables)
-   ============================================================ */
+/*   1. PROPRIÉTÉS CSS PERSONNALISÉES (Variables) */
 :root {
   /* -- Couleurs -- */
   --color-bg:            #0b0d17;
@@ -73,9 +71,7 @@
   --transition-slow: 400ms ease;
 }
 
-/* ============================================================
-   2. STYLES DE BASE ET RÉINITIALISATION
-   ============================================================ */
+/* 2. STYLES DE BASE ET RÉINITIALISATION */
 *,
 *::before,
 *::after {
@@ -273,6 +269,15 @@ ul, ol {
 
 .lien-navigation {
   color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+#logoutHome:hover {
+  color: red;
   font-size: var(--font-size-sm);
   font-weight: 500;
   padding: var(--space-xs) var(--space-sm);
