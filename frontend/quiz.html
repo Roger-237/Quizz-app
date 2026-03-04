@@ -13,20 +13,21 @@
     <link rel="stylesheet" href="css/quiz.css" />
   </head>
   <body class="page">
-    <header class="top-nav">
-      <div class="top-nav-inner">
-        <div class="brand">
-          <div class="brand-logo">Q</div>
+    <!-- Navigation principale -->
+    <header class="navigation-test">
+      <div class="navigation-test-interieur">
+        <div class="marque">
+          <div class="logo-marque">Q</div>
           <div>
-            <div class="brand-text">QuizMaster</div>
+            <div class="texte-marque">QuizMaster</div>
             <p class="nav-username" id="nav-username-quiz"></p>
           </div>
         </div>
-        <nav class="nav-links" aria-label="Navigation principale">
-          <a href="dashboard.html" class="nav-link">Tableau de bord</a>
-          <a href="quiz.html" class="nav-link">Jouer</a>
-          <a href="classement.html" class="nav-link">Classement</a>
-          <button id="logoutBtn" class="nav-link nav-link--primary" type="button">
+        <nav class="liens-navigation" aria-label="Navigation principale">
+          <a href="dashboard.html" class="lien-navigation">Tableau de bord</a>
+          <a href="quiz.html" class="lien-navigation">Jouer</a>
+          <a href="classement.html" class="lien-navigation">Classement</a>
+          <button id="logoutBtn" class="lien-navigation lien-navigation--primaire" type="button">
             Déconnexion
           </button>
         </nav>
@@ -34,27 +35,28 @@
     </header>
 
     <main class="page-main">
-      <section class="hero fade-in">
-        <span class="hero__badge">🎯 Nouveau Défi</span>
-        <h1 class="hero__title">Lancer un quiz</h1>
-        <p class="hero__subtitle">
-          Choisis ta catégorie et ta difficulté, puis tente la meilleure série de bonnes réponses
-          possible.
+      <!-- Section bannière -->
+      <section class="banniere apparition-fondu">
+        <span class="banniere-insigne">🎯 Nouveau Défi</span>
+        <h1 class="banniere-titre">Lancer un quiz</h1>
+        <p class="banniere-sous-titre">
+          Choisis ta catégorie et ta difficulté, puis tente la meilleure série de bonnes réponses possible.
         </p>
       </section>
 
-      <section class="card" style="margin-top: var(--space-2xl);">
-        <div class="card__header">
-          <h2 class="card__title">Configuration du quiz</h2>
-          <p class="card__subtitle">
+      <!-- Configuration du quiz -->
+      <section class="carte" style="margin-top: var(--space-2xl);">
+        <div class="carte-en-tete">
+          <h2 class="carte-titre">Configuration du quiz</h2>
+          <p class="carte-sous-titre">
             Sélectionne tes préférences pour commencer le défi
           </p>
         </div>
 
         <div style="display: flex; gap: var(--space-md); flex-wrap: wrap; align-items: end; margin-bottom: var(--space-lg);">
           <div style="flex: 1; min-width: 200px;">
-            <label for="categorie-select" class="form-label">Catégorie</label>
-            <select id="categorie-select" class="form-select">
+            <label for="categorie-select" class="etiquette-formulaire">Catégorie</label>
+            <select id="categorie-select" class="champ-formulaire" style="cursor: pointer;">
               <option value="html">HTML</option>
               <option value="css">CSS</option>
               <option value="javascript">JavaScript</option>
@@ -63,96 +65,136 @@
           </div>
 
           <div style="flex: 1; min-width: 200px;">
-            <label for="difficulte-select" class="form-label">Difficulté</label>
-            <select id="difficulte-select" class="form-select">
+            <label for="difficulte-select" class="etiquette-formulaire">Difficulté</label>
+            <select id="difficulte-select" class="champ-formulaire" style="cursor: pointer;">
               <option value="1">Débutant</option>
               <option value="2">Intermédiaire</option>
               <option value="3">Avancé</option>
             </select>
           </div>
 
-          <button id="startQuizBtn" class="btn btn--primary" type="button">
-            Lancer le quiz
+          <button id="startQuizBtn" class="bouton bouton--primaire" type="button">
+            Commencer le quiz
           </button>
         </div>
 
-        <div id="quiz-empty" class="text-center" style="padding: var(--space-xl); color: var(--color-text-secondary);">
-          Configure ton quiz puis clique sur <span class="text-primary">Lancer le quiz</span>.
+        <div id="quiz-empty" class="texte-centre" style="padding: var(--space-xl); color: var(--color-text-secondary);">
+          Configure ton quiz puis clique sur <span style="color: var(--color-primary); font-weight: 600;">Commencer le quiz</span>.
         </div>
 
+        <!-- Quiz actif -->
         <div id="quiz-active" hidden>
           <div style="display: flex; gap: var(--space-sm); margin-bottom: var(--space-lg); flex-wrap: wrap;">
-            <span class="hero__badge" style="margin: 0;">
+            <span class="banniere-insigne" style="margin: 0;">
               Question <span id="question-index">1</span>/<span id="question-total">10</span>
             </span>
-            <span class="hero__badge" style="margin: 0;">
+            <span class="banniere-insigne" style="margin: 0;">
               <span id="meta-categorie">—</span> · <span id="meta-difficulte">—</span>
             </span>
-            <span class="hero__badge" style="margin: 0;">
+            <span class="banniere-insigne" style="margin: 0;">
               Potentiel : <span id="meta-points">0</span> pts
             </span>
           </div>
 
+          <!-- Timer -->
           <div style="margin-bottom: var(--space-lg);">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
               <span style="font-weight: 600;">Temps restant</span>
-              <span id="timer-label" style="font-weight: 700; color: var(--color-warning);">15 s</span>
+              <span id="timer-label" style="font-weight: 700; color: var(--color-warning); font-size: var(--font-size-lg);">15 s</span>
             </div>
             <div style="width: 100%; height: 8px; background-color: var(--color-border); border-radius: var(--radius-sm); overflow: hidden;">
               <div id="timer-bar" style="height: 100%; background-color: var(--color-warning); transition: width 1s linear; width: 100%;"></div>
             </div>
           </div>
 
-          <h2 id="quiz-question-title" class="card__title" style="text-align: center; margin-bottom: var(--space-xl);">Question en cours…</h2>
+          <!-- Question -->
+          <h2 id="quiz-question-title" class="carte-titre" style="text-align: center; margin-bottom: var(--space-xl);">Question en cours…</h2>
 
-          <div id="choices" class="choices-list" role="radiogroup" aria-label="Réponses" style="display: grid; gap: var(--space-md);"></div>
+          <!-- Réponses -->
+          <div id="choices" class="choix-liste" role="radiogroup" aria-label="Réponses" style="display: grid; gap: var(--space-md); margin-bottom: var(--space-xl);"></div>
 
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: var(--space-xl);">
+          <!-- Bouton suivant -->
+          <div style="display: flex; justify-content: space-between; align-items: center;">
             <span id="quiz-progress" style="color: var(--color-text-secondary); font-size: var(--font-size-sm);"></span>
-            <button id="nextBtn" class="btn btn--primary" type="button">
+            <button id="nextBtn" class="bouton bouton--primaire" type="button">
               Question suivante
             </button>
           </div>
         </div>
 
-        <div id="quiz-result" class="text-center" style="padding: var(--space-xl);" hidden></div>
+        <!-- Résultats -->
+        <div id="quiz-result" class="texte-centre" style="padding: var(--space-xl);" hidden></div>
       </section>
 
+      <!-- Statistiques -->
       <section style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); margin-top: var(--space-xl);">
-        <article class="feature-card">
-          <div class="feature-card__icon">
+        <article class="carte-fonctionnalite">
+          <div class="carte-fonctionnalite-icone">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 11l3 3L22 4"/>
               <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
             </svg>
           </div>
-          <h3 class="feature-card__title">Vue d'ensemble</h3>
-          <p style="font-size: var(--font-size-2xl); font-weight: 700; color: var(--color-success);">
+          <h3 class="carte-fonctionnalite-titre">Vue d'ensemble</h3>
+          <p style="font-size: var(--font-size-2xl); font-weight: 700; color: var(--color-success); margin: var(--space-md) 0;">
             <span id="sidebar-score">0</span>
             <span style="font-size: var(--font-size-sm); font-weight: 400; color: var(--color-text-secondary);"> bonnes réponses</span>
           </p>
-          <p class="feature-card__desc">
+          <p class="carte-fonctionnalite-description">
             Les points sont calculés côté serveur à partir de tes réponses justes.
           </p>
         </article>
 
-        <article class="feature-card">
-          <div class="feature-card__icon">
+        <article class="carte-fonctionnalite">
+          <div class="carte-fonctionnalite-icone">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"/>
               <polyline points="12 6 12 12 16 14"/>
             </svg>
           </div>
-          <h3 class="feature-card__title">Progression</h3>
+          <h3 class="carte-fonctionnalite-titre">Progression</h3>
           <div id="questions-dots" style="display: flex; gap: var(--space-xs); flex-wrap: wrap; justify-content: center; margin: var(--space-md) 0;" aria-hidden="true"></div>
-          <p class="feature-card__desc">
+          <p class="carte-fonctionnalite-description">
             Les points indiquent les questions répondues. Clique sur une question pour la revoir.
           </p>
         </article>
       </section>
 
-      <p id="quiz-status" class="status-message" style="margin-top: var(--space-lg);" aria-live="polite"></p>
+      <p id="quiz-status" class="message-statut" style="margin-top: var(--space-lg);" aria-live="polite"></p>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-contenu">
+        <div class="footer-section">
+          <div class="footer-marque">
+            <div class="logo-marque">Q</div>
+            <div class="texte-marque">QuizMaster</div>
+          </div>
+          <p class="footer-description">Testez vos connaissances et défiez-vous contre d'autres joueurs du monde entier.</p>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-titre">Navigation</h4>
+          <ul class="footer-liens">
+            <li><a href="index.html" class="footer-lien">Accueil</a></li>
+            <li><a href="quiz.html" class="footer-lien">Jouer</a></li>
+            <li><a href="classement.html" class="footer-lien">Classement</a></li>
+            <li><a href="inscription.html" class="footer-lien">S'inscrire</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-titre">Ressources</h4>
+          <ul class="footer-liens">
+            <li><a href="login.html" class="footer-lien">Connexion</a></li>
+            <li><a href="forgot-password.html" class="footer-lien">Mot de passe oublié</a></li>
+            <li><a href="verification-email.html" class="footer-lien">Vérification email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bas">
+        <p>&copy; 2026 QuizMaster. Tous droits réservés.</p>
+      </div>
+    </footer>
 
     <script src="js/config.js"></script>
     <script src="js/auth-service.js"></script>
