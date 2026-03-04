@@ -1336,6 +1336,33 @@ ul, ol {
   height: auto !important;
 }
 
+/* Quiz Active Section */
+#quiz-active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+#quiz-empty {
+  display: block !important;
+  visibility: visible !important;
+}
+
+#quiz-result {
+  display: block !important;
+  visibility: visible !important;
+}
+
+#quiz-question-title {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
 .choix-liste {
   display: grid !important;
   gap: var(--space-md) !important;
@@ -1344,6 +1371,8 @@ ul, ol {
   min-height: auto !important;
   max-height: none !important;
   height: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .choix-item {
