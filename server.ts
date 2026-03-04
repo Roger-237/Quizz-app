@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json()); // Pour lire le body des requêtes POST
 app.use(cookieParser()); // Pour lire le JWT dans les cookies
 app.use(cors({
-    origin: "http://localhost:5501",
+    origin: "https://projet-programmation-web.vercel.app",
     credentials: true
 }));
 
