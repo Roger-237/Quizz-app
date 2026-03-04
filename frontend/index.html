@@ -18,9 +18,9 @@
     <header class="navigation-test">
       <div class="navigation-test-interieur">
         <div class="marque">
-          <div class="logo-marque">Q</div>
+          <div class="logo-marque">Q</a></div>
           <div>
-            <div class="texte-marque">QuizMaster</div>
+            <div class="texte-marque"><a href="index.html">QuizMaster</a></div>
             <p class="nav-username" id="nav-username-home" data-auth-visible="auth"></p>
           </div>
         </div>
@@ -34,8 +34,9 @@
           
           <!-- Actions visibles seulement si connecté -->
           <a href="dashboard.html" class="lien-navigation" data-auth-visible="auth" style="display: none">Tableau de bord</a>
-          <button id="logoutHome" class="lien-navigation lien-navigation--primaire" type="button" data-auth-visible="auth" style="display: none">Déconnexion</button>
-        </nav>
+        <button id="logoutBtn" class="nav-link" type="button" data-auth-visible="auth" style="display: none">
+          Déconnexion
+        </button>        </nav>
       </div>
     </header>
 

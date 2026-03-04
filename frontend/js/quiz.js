@@ -42,7 +42,7 @@ class ProfessionalQuizManager {
         <div class="quiz-container">
           <div class="quiz-result">
             <div class="result-title">⚠️ Accès Restreint</div>
-            <p style="font-size: 1.2rem; margin: 1rem 0;">Veuillez vous connecter pour accéder au quiz</p>
+            <p>Veuillez vous connecter pour accéder au quiz</p>
             <button class="btn-restart" onclick="window.location.href='index.html'">
               Retour à l'accueil
             </button>
